@@ -1,0 +1,38 @@
+name: Build and Push Docker Image with Commit SHA
+
+on:
+  push:
+    branches:
+      - main # Kích hoạt khi có push vào nhánh chính
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }} # Sử dụng Docker Hub username từ GitHub Secrets
+          password: ${{ secrets.DOCKER_PASSWORD }} # Sử dụng Docker Hub password từ GitHub Secrets
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./build/dockerfile
+          push: true # Đẩy image lên Docker Hub
+          build-args: | # Truyền các biến môi trường vào build-args (nếu cần)
+            DATABASE_HOST=${{ secrets.DATABASE_HOST }}
+            DATABASE_NAME=${{ secrets.DATABASE_NAME }}
+            DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}
+            DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
+          tags: | # Tạo các tags cho image
+            ${{ secrets.DOCKER_USERNAME }}/$${{ secrets.DOCKER_APP_NAME }}:latest 
+            ${{ secrets.DOCKER_USERNAME }}/$${{ secrets.DOCKER_APP_NAME }}:${{ github.sha }}  

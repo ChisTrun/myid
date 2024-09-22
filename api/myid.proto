@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package myid;
+
+option go_package = "github.com/ChisTrun/myid/api;myid";
+
+
+service MyId {
+    rpc TestEnvoy (TestEnvoyRequest) returns (TestEnvoyResponse);
+}
+
+message TestEnvoyRequest {
+    
+}
+
+message TestEnvoyResponse {
+    required string status = 1;
+}
