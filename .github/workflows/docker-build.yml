@@ -27,11 +27,6 @@ jobs:
         with:
           context: .
           file: ./build/dockerfile
-          build-args: | # Truyền các biến môi trường vào build-args (nếu cần)
-            DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}
-            DATABASE_HOST=${{ secrets.DATABASE_HOST }}
-            DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
-            DATABASE_NAME=${{ secrets.DATABASE_NAME }}
           push: true # Đẩy image lên Docker Hub
           tags: | # Tạo các tags cho image
             ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_APP_NAME }}:latest 

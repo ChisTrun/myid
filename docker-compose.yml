@@ -6,10 +6,4 @@ services:
       dockerfile: build/dockerfile
     ports:
       - "8080:8080"  
-    environment:
-      - HOST=localhost
-      - PORT=8080
-      - DATABASE_HOST=localhost
-      - DATABASE_NAME=pattern
-      - DATABASE_USERNAME=root
-      - DATABASE_PASSWORD=trung113
+      
