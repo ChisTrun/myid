@@ -1,5 +1,3 @@
-vendor
-go.sum
 *_local.yaml
 *_test.go
 .vscode
