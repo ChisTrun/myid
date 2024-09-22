@@ -34,5 +34,5 @@ jobs:
             DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}
             DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
           tags: | # Tạo các tags cho image
-            ${{ secrets.DOCKER_USERNAME }}/$${{ secrets.DOCKER_APP_NAME }}:latest 
-            ${{ secrets.DOCKER_USERNAME }}/$${{ secrets.DOCKER_APP_NAME }}:${{ github.sha }}  
+            ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_APP_NAME }}:latest 
+            ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_APP_NAME }}:${{ github.sha }}

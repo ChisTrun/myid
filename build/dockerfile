@@ -12,7 +12,6 @@ RUN go build -o server ./cmd
 # Đặt các biến môi trường
 ARG DATABASE_HOST
 ARG DATABASE_NAME
-
 ARG DATABASE_USERNAME
 ARG DATABASE_PASSWORD
 
